@@ -94,8 +94,8 @@ resource "aws_codepipeline" "this" {
       version          = "1"
 
       configuration = {
-        ApplicationName     = module.codedeploy.codedeploy_app.name
-        DeploymentGroupName = module.codedeploy.codedeploy_dp.name
+        ApplicationName     = lower("${var.pipeline_name}-app")
+        DeploymentGroupName = lower("${var.pipeline_name}-dg")
       }
     }
   }
