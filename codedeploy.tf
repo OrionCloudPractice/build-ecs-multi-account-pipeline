@@ -25,14 +25,6 @@ data "aws_iam_policy_document" "codedeploy_assume" {
       type        = "Service"
       identifiers = ["codedeploy.amazonaws.com"]
     }
-
-    condition {
-      test     = "StringLike"
-      variable = "aws:SourceArn"
-      values = [
-        "arn:aws:codedeploy:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:application/${var.pipeline_name}-*"
-      ]
-    }
   }
 }
 
