@@ -35,11 +35,6 @@ variable "termination_wait_time_in_minutes" {
   default     = 5
 }
 
-variable "listener_arns" {
-  description = "List of listener ARNs for the load balancer"
-  type        = list(string)
-}
-
 variable "blue_target_group_name" {
   description = "The name of the blue target group"
   type        = string
@@ -49,3 +44,13 @@ variable "green_target_group_name" {
   description = "The name of the green target group"
   type        = string
 }*/
+
+variable "listener_arns" {
+  description = "List of listener ARNs for the load balancer"
+  type        = string
+}
+
+variable "target_group_name" {
+  description = "List of listener ARNs for the load balancer"
+  type        = string
+}

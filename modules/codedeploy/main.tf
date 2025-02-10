@@ -52,4 +52,14 @@ resource "aws_codedeploy_deployment_group" "this" {
     }
   }
 */
+  load_balancer_info {
+    target_group_pair_info {
+      target_group {
+        name = var.target_group_name
+      }
+      prod_traffic_route {
+        listener_arns = [var.listener_arns]
+      }
+    }
+  }
 }

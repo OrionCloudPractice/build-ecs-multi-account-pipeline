@@ -8,7 +8,8 @@ module "codedeploy" {
   ecs_cluster_name       = var.ecs_cluster_name
  # blue_target_group_name = var.blue_target_group_name
  # green_target_group_name = var.green_target_group_name
- # listener_arns           = var.listener_arns
+  listener_arns           = var.listener_arns
+  target_group_name = var.target_group_name
 }
 
 resource "aws_iam_role" "codedeploy" {
