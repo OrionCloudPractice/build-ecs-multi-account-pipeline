@@ -60,7 +60,7 @@ variable "codebuild_timeout" {
   type    = number
   default = 60
 }
-
+/*
 variable "ecs_cluster_name" {
   type = string
 }
@@ -68,7 +68,7 @@ variable "ecs_cluster_name" {
 variable "ecs_service_name" {
   type = string
 }
-/*
+
 variable "blue_target_group_name" {
   type = string
 }
