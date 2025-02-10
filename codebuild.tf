@@ -1,37 +1,23 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: MIT-0
 
-module "validation" {
+module "build" {
   source                = "./modules/codebuild"
-  codebuild_name        = lower("${var.pipeline_name}-validation")
+  codebuild_name        = lower("${var.pipeline_name}-build")
   codebuild_role        = aws_iam_role.codebuild.arn
-  environment_variables = merge(
-    var.environment_variables,
-    {
-      SAST_REPORT_NAME = aws_codebuild_report_group.sast.name
-    })
+  environment_variables = var.environment_variables
   build_timeout         = 5
-  build_spec            = "validate.yml"
+  build_spec            = "build.yml"
   log_group             = local.log_group
 }
-
-module "plan" {
+/*
+module "testing" {
   source         = "./modules/codebuild"
-  codebuild_name = lower("${var.pipeline_name}-plan")
+  codebuild_name = lower("${var.pipeline_name}-testing")
   codebuild_role = aws_iam_role.codebuild.arn
   environment_variables = var.environment_variables
   build_timeout = var.codebuild_timeout
-  build_spec    = "plan.yml"
-  log_group     = local.log_group
-}
-
-module "apply" {
-  source         = "./modules/codebuild"
-  codebuild_name = lower("${var.pipeline_name}-apply")
-  codebuild_role = aws_iam_role.codebuild.arn
-  environment_variables = var.environment_variables
-  build_timeout = var.codebuild_timeout
-  build_spec    = "apply.yml"
+  build_spec    = "testing.yml"
   log_group     = local.log_group
 }
 
@@ -39,7 +25,7 @@ resource "aws_iam_role" "codebuild" {
   name               = "${var.pipeline_name}-codebuild"
   assume_role_policy = data.aws_iam_policy_document.codebuild_assume.json
 }
-
+*/
 data "aws_iam_policy_document" "codebuild_assume" {
   statement {
     effect  = "Allow"
@@ -175,14 +161,9 @@ data "aws_iam_policy_document" "codebuild" {
   statement {
     effect = "Allow"
     actions = [
-      "apigateway:*",
-      "ec2:*",
+      "ecr:*",
       "ecs:*",
-      "logs:*",
-      "iam:*",
-      "elasticloadbalancing:*",
-      "cloudfront:*",
-      "application-autoscaling:*"
+      "ssm:*"
     ]
 
     resources = [
@@ -191,21 +172,21 @@ data "aws_iam_policy_document" "codebuild" {
   }
 }
 
-resource "aws_codebuild_report_group" "sast" {
-  name           = "sast-report-${var.pipeline_name}"
-  type           = "TEST"
-  delete_reports = true
+#resource "aws_codebuild_report_group" "sast" {
+#  name           = "sast-report-${var.pipeline_name}"
+#  type           = "TEST"
+#  delete_reports = true
 
-  export_config {
-    type = "S3"
+#  export_config {
+#    type = "S3"
 
-    s3_destination {
-      bucket              = aws_s3_bucket.this.id
-      encryption_disabled = false
-      encryption_key      = try(var.kms_key, data.aws_kms_key.s3.arn)
-      packaging           = "NONE"
-      path                = "/sast"
-    }
-  }
-}
+#    s3_destination {
+#      bucket              = aws_s3_bucket.this.id
+#      encryption_disabled = false
+#      encryption_key      = try(var.kms_key, data.aws_kms_key.s3.arn)
+#      packaging           = "NONE"
+#      path                = "/sast"
+#    }
+#  }
+#}
 

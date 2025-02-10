@@ -17,16 +17,7 @@ variable "branch" {
 variable "environment_variables" {
   description = "environment variables for codebuild"
   type        = map(string)
-  default = {
-    TF_VERSION     = "1.5.7"
-    TFLINT_VERSION = "0.48.0"
-  }
-}
-
-variable "checkov_skip" {
-  description = "list of checkov checks to skip"
-  type        = list(string)
-  default     = [""]
+  default = {}
 }
 
 variable "accounts" {
@@ -60,12 +51,33 @@ variable "codebuild_policy" {
   default = null
 }
 
-variable "workspace_directory" {
+variable "codedeploy_policy" {
   type    = string
-  default = ""
+  default = null
 }
 
 variable "codebuild_timeout" {
   type    = number
   default = 60
+}
+
+variable "ecs_cluster_name" {
+  type = string
+}
+
+variable "ecs_service_name" {
+  type = string
+}
+
+variable "blue_target_group_name" {
+  type = string
+}
+
+variable "green_target_group_name" {
+  type = string
+}
+
+variable "listener_arns" {
+  description = "List of listener ARNs for the load balancer"
+  type        = list(string)
 }
