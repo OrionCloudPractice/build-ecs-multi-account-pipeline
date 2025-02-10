@@ -10,6 +10,11 @@ resource "aws_codedeploy_deployment_group" "this" {
 
   deployment_config_name = var.deployment_config_name
 
+  deployment_style {
+    deployment_type   = "IN_PLACE"
+    deployment_option = "WITHOUT_TRAFFIC_CONTROL"
+  }
+
   auto_rollback_configuration {
     enabled = true
     events  = ["DEPLOYMENT_FAILURE"]
@@ -19,7 +24,7 @@ resource "aws_codedeploy_deployment_group" "this" {
     cluster_name = var.ecs_cluster_name
     service_name = var.ecs_service_name
   }
-
+/*
   blue_green_deployment_config {
     terminate_blue_instances_on_deployment_success {
       action                            = "TERMINATE"
@@ -46,4 +51,5 @@ resource "aws_codedeploy_deployment_group" "this" {
       }
     }
   }
+*/
 }

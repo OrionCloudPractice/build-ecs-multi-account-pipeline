@@ -6,9 +6,9 @@ module "codedeploy" {
   deployment_group_name  = lower("${var.pipeline_name}-dg")
   ecs_service_name       = var.ecs_service_name
   ecs_cluster_name       = var.ecs_cluster_name
-  blue_target_group_name = var.blue_target_group_name
-  green_target_group_name = var.green_target_group_name
-  listener_arns           = var.listener_arns
+ # blue_target_group_name = var.blue_target_group_name
+ # green_target_group_name = var.green_target_group_name
+ # listener_arns           = var.listener_arns
 }
 
 resource "aws_iam_role" "codedeploy" {

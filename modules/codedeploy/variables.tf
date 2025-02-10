@@ -28,7 +28,7 @@ variable "ecs_service_name" {
   description = "The name of the ECS service"
   type        = string
 }
-
+/*
 variable "termination_wait_time_in_minutes" {
   description = "Time to wait before terminating the old version"
   type        = number
@@ -48,4 +48,4 @@ variable "blue_target_group_name" {
 variable "green_target_group_name" {
   description = "The name of the green target group"
   type        = string
-}
+}*/
