@@ -68,7 +68,7 @@ variable "ecs_cluster_name" {
 variable "ecs_service_name" {
   type = string
 }
-
+/*
 variable "blue_target_group_name" {
   type = string
 }
@@ -80,4 +80,4 @@ variable "green_target_group_name" {
 variable "listener_arns" {
   description = "List of listener ARNs for the load balancer"
   type        = list(string)
-}
+}*/
