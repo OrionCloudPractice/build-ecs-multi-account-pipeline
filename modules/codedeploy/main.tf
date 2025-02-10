@@ -51,7 +51,7 @@ resource "aws_codedeploy_deployment_group" "this" {
       }
     }
   }
-*/
+
   load_balancer_info {
     target_group_pair_info {
       target_group {
@@ -62,4 +62,5 @@ resource "aws_codedeploy_deployment_group" "this" {
       }
     }
   }
+*/
 }

@@ -65,7 +65,7 @@ resource "aws_codepipeline" "this" {
         }
       }
     }
-*/
+
   stage {
     name = "Approval"
 
@@ -98,7 +98,7 @@ resource "aws_codepipeline" "this" {
         DeploymentGroupName = lower("${var.pipeline_name}-dg")
       }
     }
-  }
+  }*/
 }
 
 resource "aws_iam_role" "codepipeline" {

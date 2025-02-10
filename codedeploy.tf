@@ -1,4 +1,4 @@
-module "codedeploy" {
+/*module "codedeploy" {
   source                 = "./modules/codedeploy"
 
   codedeploy_app_name    = lower("${var.pipeline_name}-app")
@@ -59,4 +59,4 @@ data "aws_iam_policy_document" "codedeploy" {
     ]
     resources = ["*"]
   }
-}
+}*/

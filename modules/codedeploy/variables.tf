@@ -43,7 +43,7 @@ variable "blue_target_group_name" {
 variable "green_target_group_name" {
   description = "The name of the green target group"
   type        = string
-}*/
+}
 
 variable "listener_arns" {
   description = "List of listener ARNs for the load balancer"
@@ -54,3 +54,4 @@ variable "target_group_name" {
   description = "List of listener ARNs for the load balancer"
   type        = string
 }
+*/
