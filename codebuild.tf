@@ -20,12 +20,12 @@ module "testing" {
   build_spec    = "testing.yml"
   log_group     = local.log_group
 }
-
+*/
 resource "aws_iam_role" "codebuild" {
   name               = "${var.pipeline_name}-codebuild"
   assume_role_policy = data.aws_iam_policy_document.codebuild_assume.json
 }
-*/
+
 data "aws_iam_policy_document" "codebuild_assume" {
   statement {
     effect  = "Allow"
